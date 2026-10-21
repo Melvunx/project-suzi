@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Menu } from 'lucide-react'
 import { Logo } from '@/components/Logo'
 import { Button } from '@/components/ui/button'
@@ -8,16 +8,28 @@ import { navLinks, restaurant } from '@/data/site'
 export function MobileNav() {
   const [open, setOpen] = useState(false)
 
-  // Pendant que le panneau est ouvert, Radix bloque le scroll de la page : un clic
-  // sur une ancre ne ferait rien. On ferme d'abord, puis on défile une fois le
-  // verrou levé. scrollIntoView() respecte `scroll-smooth` et prefers-reduced-motion.
+  // Le scroll doit partir APRÈS la fermeture complète du panneau : Radix bloque le
+  // scroll de la page pendant l'animation de sortie et le relâche au démontage, ce
+  // qui interrompt un défilement fluide déjà lancé. On mémorise donc la cible ici
+  // et on défile dans onCloseAutoFocus, appelé quand le contenu est démonté.
+  const pendingHref = useRef<string | null>(null)
+
   function goTo(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
     event.preventDefault()
+    pendingHref.current = href
     setOpen(false)
-    setTimeout(() => {
+  }
+
+  function scrollToPending(event: Event) {
+    const href = pendingHref.current
+    if (!href) return
+    pendingHref.current = null
+    // évite que le focus revienne sur le bouton burger (et fasse défiler la page)
+    event.preventDefault()
+    requestAnimationFrame(() => {
       document.querySelector(href)?.scrollIntoView()
       history.pushState(null, '', href)
-    }, 50)
+    })
   }
 
   return (
@@ -27,7 +39,7 @@ export function MobileNav() {
           <Menu className="size-6" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="gap-0 p-6">
+      <SheetContent side="right" className="gap-0 p-6" onCloseAutoFocus={scrollToPending}>
         <SheetTitle className="sr-only">Menu</SheetTitle>
         <SheetDescription className="sr-only">Navigation vers les sections du site</SheetDescription>
         <Logo className="mb-8 h-12 self-start" />
