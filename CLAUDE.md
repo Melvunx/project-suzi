@@ -25,6 +25,7 @@ Pas de framework de test configuré.
 - Alias `@` → `src/`, déclaré à deux endroits à garder synchronisés : `vite.config.ts` (`resolve.alias`) et `paths` dans `tsconfig.json` / `tsconfig.app.json`. Pas de `baseUrl` (déprécié en TypeScript 6).
 - `src/index.css` : point d'entrée Tailwind + variables de thème shadcn (`:root`) et `@theme inline`.
 - Composants shadcn dans `src/components/ui/`, helper `cn()` dans `src/lib/utils.ts`.
+- Le menu mobile (`MobileNav.tsx`, `Sheet` shadcn) ferme le panneau avant de défiler vers l'ancre, car Radix bloque le scroll tant qu'il est ouvert. `html` a `scroll-pt-20` pour que le header sticky ne masque pas les titres.
 - `src/App.tsx` assemble les sections de la maquette (`Header`, `Hero`, `Marquee`, `Features`, `Testimonials`, `CtaBand`, `Footer`) définies dans `src/components/`. Pas de routeur : page unique avec ancres (`#atouts`, `#avis`, `#reserver`, `#contact`).
 - `src/data/site.ts` centralise tout le contenu texte (coordonnées, horaires, atouts, avis, liens de nav). Modifier le contenu là, pas dans le JSX. Les valeurs `PLACEHOLDER` y sont signalées en commentaire.
 - Le thème Chez Susy est appliqué dans `src/index.css` : `primary` = orange, `secondary` = vert (variantes `primary-dark` / `secondary-dark`), `muted` = crème foncé, polices via `@fontsource-variable` (`font-heading` = Playfair Display). Pas de mode sombre. Le bandeau défilant utilise l'animation CSS `animate-marquee` (pas encore `motion`).

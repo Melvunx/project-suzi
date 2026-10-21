@@ -73,7 +73,7 @@
     @apply border-border outline-ring/50;
     }
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth scroll-pt-20 font-sans;
     }
   body {
     @apply bg-background text-foreground antialiased;
