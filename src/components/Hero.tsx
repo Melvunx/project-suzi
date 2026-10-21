@@ -31,7 +31,7 @@ export function Hero() {
               variant="outline"
               className="h-12 border-foreground bg-transparent px-8 text-[15px]"
             >
-              <a href="#atouts">Découvrir la carte</a>
+              <a href="#carte">Découvrir la carte</a>
             </Button>
           </div>
           {/* PLACEHOLDER : note et nombre de convives de la maquette, à confirmer */}

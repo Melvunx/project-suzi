@@ -26,7 +26,7 @@ Pas de framework de test configuré.
 - `src/index.css` : point d'entrée Tailwind + variables de thème shadcn (`:root`) et `@theme inline`.
 - Composants shadcn dans `src/components/ui/`, helper `cn()` dans `src/lib/utils.ts`.
 - Le menu mobile (`MobileNav.tsx`, `Sheet` shadcn) ferme le panneau avant de défiler vers l'ancre, car Radix bloque le scroll tant qu'il est ouvert. `html` a `scroll-pt-20` pour que le header sticky ne masque pas les titres.
-- `src/App.tsx` assemble les sections de la maquette (`Header`, `Hero`, `Marquee`, `Features`, `Testimonials`, `CtaBand`, `Footer`) définies dans `src/components/`. Pas de routeur : page unique avec ancres (`#atouts`, `#avis`, `#reserver`, `#contact`).
+- `src/App.tsx` assemble les sections de la maquette (`Header`, `Hero`, `Marquee`, `Features`, `Menu`, `Testimonials`, `CtaBand`, `Footer`) définies dans `src/components/`. Pas de routeur : page unique avec ancres (`#atouts`, `#carte`, `#avis`, `#reserver`, `#contact`).
 - `src/data/site.ts` centralise tout le contenu texte (coordonnées, horaires, atouts, avis, liens de nav). Modifier le contenu là, pas dans le JSX. Les valeurs `PLACEHOLDER` y sont signalées en commentaire.
 - Le thème Chez Susy est appliqué dans `src/index.css` : `primary` = orange, `secondary` = vert (variantes `primary-dark` / `secondary-dark`), `muted` = crème foncé, polices via `@fontsource-variable` (`font-heading` = Playfair Display). Pas de mode sombre. Le bandeau défilant utilise l'animation CSS `animate-marquee` (pas encore `motion`).
 - Les icônes viennent de `lucide-react` v1, qui n'a plus d'icônes de marques : Instagram / Facebook sont des SVG inline dans `Footer.tsx`.
@@ -47,5 +47,5 @@ Le logo existe en SVG inline, dupliqué dans le header et le footer : à extrair
 
 - Placeholders à ne pas publier tels quels : téléphone `0596 XX XX XX` / `tel:+596596000000`, e-mail `contact@chezsusy.mq`, liens sociaux `href="#"`, adresse réduite à « 97220 Trinité ».
 - Contenu probablement inventé par le générateur de la maquette : note « 4,9/5 — plus de 200 convives » et les trois avis. À faire confirmer par la propriétaire (ou remplacer par de vrais avis) avant mise en ligne.
-- Le bouton « Découvrir la carte » pointe vers `#atouts` : il n'existe pas de carte/menu. Pas de photos non plus (le visuel du hero est un SVG décoratif) : le contenu réel (plats, photos, horaires) doit venir de la propriétaire.
+- La carte (`Menu.tsx`, données dans `menu` de `src/data/site.ts`) est une carte d'EXEMPLE (plats et prix inventés) : tant que `menuIsSample` vaut `true`, la section affiche un bandeau « Carte d'exemple ». À remplacer par la vraie carte puis passer le drapeau à `false`. Pas de photos non plus (le visuel du hero est un SVG décoratif) : le contenu réel (plats, photos, horaires) doit venir de la propriétaire.
 - Le nom du fichier contient un tiret final (`chez-susy-.html`).
