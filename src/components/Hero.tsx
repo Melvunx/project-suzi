@@ -2,27 +2,46 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/ui/button";
 import { restaurant } from "@/data/site";
 import { Star } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  baseTransition,
+  duration,
+  easeOut,
+  fadeUp,
+  stagger,
+} from "@/lib/motion";
 import { Logo } from "./Logo";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden py-24">
       <div className="mx-auto grid max-w-295 items-center gap-16 px-8 lg:grid-cols-[1.05fr_0.85fr]">
-        <div>
-          <Eyebrow>
-            {restaurant.city} · {restaurant.region}
-          </Eyebrow>
-          <h1 className="mt-4 mb-5 text-[clamp(2.4rem,5.2vw,3.9rem)] leading-[1.15] font-semibold">
+        <motion.div initial="hidden" animate="show" variants={stagger}>
+          <motion.div variants={fadeUp}>
+            <Eyebrow>
+              {restaurant.city} · {restaurant.region}
+            </Eyebrow>
+          </motion.div>
+          <motion.h1
+            variants={fadeUp}
+            className="mt-4 mb-5 text-[clamp(2.4rem,5.2vw,3.9rem)] leading-[1.15] font-semibold"
+          >
             La cuisine créole,
             <br />
             <em className="text-primary">sublimée</em> avec exigence.
-          </h1>
-          <p className="mb-8 max-w-120 text-lg text-muted-foreground">
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className="mb-8 max-w-120 text-lg text-muted-foreground"
+          >
             Chez Susy réinvite les saveurs du terroir martiniquais dans un cadre
             raffiné — produits locaux sélectionnés, recettes transmises, service
             attentionné, pour une table qui se réserve à l'avance.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
+          </motion.p>
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap items-center gap-4"
+          >
             <Button asChild className="h-12 px-8 text-[15px]">
               <a href="#reserver">Réserver ma table</a>
             </Button>
@@ -33,9 +52,12 @@ export function Hero() {
             >
               <a href="#carte">Découvrir la carte</a>
             </Button>
-          </div>
+          </motion.div>
           {/* PLACEHOLDER : note et nombre de convives de la maquette, à confirmer */}
-          <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground">
+          <motion.div
+            variants={fadeUp}
+            className="mt-8 flex items-center gap-3 text-sm text-muted-foreground"
+          >
             <span className="flex gap-0.5 text-primary" aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => (
                 <Star key={i} className="size-4 fill-current" />
@@ -44,16 +66,24 @@ export function Hero() {
             <span>
               4,9/5 — plus de 200 convives satisfaits à {restaurant.city}
             </span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            ...baseTransition,
+            duration: duration.slow,
+            delay: 0.3,
+            ease: easeOut,
+          }}
           aria-hidden="true"
           className="relative flex aspect-square items-center justify-center rounded-md border bg-muted"
         >
           <div className="absolute inset-4 rounded-md border" />
           <Logo className="relative size-full p-12" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
