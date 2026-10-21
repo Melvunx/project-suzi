@@ -1,5 +1,5 @@
 import { Eyebrow } from '@/components/Eyebrow'
-import { Reveal } from '@/components/Reveal'
+import { Reveal, RevealItem, RevealList } from '@/components/Reveal'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { menu, menuIsSample } from '@/data/site'
 
@@ -46,9 +46,9 @@ export function Menu() {
 
           {menu.map((category) => (
             <TabsContent key={category.id} value={category.id}>
-              <ul className="mx-auto grid max-w-240 gap-x-14 gap-y-8 md:grid-cols-2">
+              <RevealList className="mx-auto grid max-w-240 gap-x-14 gap-y-8 md:grid-cols-2">
                 {category.items.map((item) => (
-                  <li key={item.name}>
+                  <RevealItem key={item.name}>
                     <div className="flex items-baseline gap-3">
                       <h3 className="text-lg font-semibold">{item.name}</h3>
                       {item.signature && (
@@ -65,9 +65,9 @@ export function Menu() {
                       </span>
                     </div>
                     <p className="mt-1.5 max-w-prose text-[15px] text-muted-foreground">{item.description}</p>
-                  </li>
+                  </RevealItem>
                 ))}
-              </ul>
+              </RevealList>
             </TabsContent>
           ))}
         </Tabs>
