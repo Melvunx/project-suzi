@@ -1,7 +1,8 @@
-import { Star } from 'lucide-react'
-import { Eyebrow } from '@/components/Eyebrow'
-import { Button } from '@/components/ui/button'
-import { restaurant } from '@/data/site'
+import { Eyebrow } from "@/components/Eyebrow";
+import { Button } from "@/components/ui/button";
+import { restaurant } from "@/data/site";
+import { Star } from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Hero() {
   return (
@@ -17,14 +18,19 @@ export function Hero() {
             <em className="text-primary">sublimée</em> avec exigence.
           </h1>
           <p className="mb-8 max-w-120 text-lg text-muted-foreground">
-            Chez Susy réinvite les saveurs du terroir martiniquais dans un cadre raffiné — produits locaux
-            sélectionnés, recettes transmises, service attentionné, pour une table qui se réserve à l'avance.
+            Chez Susy réinvite les saveurs du terroir martiniquais dans un cadre
+            raffiné — produits locaux sélectionnés, recettes transmises, service
+            attentionné, pour une table qui se réserve à l'avance.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <Button asChild className="h-12 px-8 text-[15px]">
               <a href="#reserver">Réserver ma table</a>
             </Button>
-            <Button asChild variant="outline" className="h-12 border-foreground bg-transparent px-8 text-[15px]">
+            <Button
+              asChild
+              variant="outline"
+              className="h-12 border-foreground bg-transparent px-8 text-[15px]"
+            >
               <a href="#atouts">Découvrir la carte</a>
             </Button>
           </div>
@@ -35,7 +41,9 @@ export function Hero() {
                 <Star key={i} className="size-4 fill-current" />
               ))}
             </span>
-            <span>4,9/5 — plus de 200 convives satisfaits à {restaurant.city}</span>
+            <span>
+              4,9/5 — plus de 200 convives satisfaits à {restaurant.city}
+            </span>
           </div>
         </div>
 
@@ -44,15 +52,9 @@ export function Hero() {
           className="relative flex aspect-square items-center justify-center rounded-md border bg-muted"
         >
           <div className="absolute inset-4 rounded-md border" />
-          <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
-            <circle cx="110" cy="110" r="86" strokeWidth="1.2" className="stroke-primary" />
-            <circle cx="110" cy="110" r="60" strokeWidth="1" className="stroke-secondary" />
-            <path d="M70 130 Q110 70 150 130" strokeWidth="1.4" className="stroke-primary" />
-            <path d="M78 120 Q110 90 142 120" strokeWidth="1.2" className="stroke-secondary" />
-            <circle cx="110" cy="110" r="3.5" className="fill-primary" />
-          </svg>
+          <Logo className="relative size-full p-12" />
         </div>
       </div>
     </section>
-  )
+  );
 }

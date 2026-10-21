@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 export function Logo({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 680 340"
+      viewBox="160 40 360 260"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label="Chez Susy, restaurant cuisine créole"
