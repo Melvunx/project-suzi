@@ -1,4 +1,5 @@
 import { Eyebrow } from '@/components/Eyebrow'
+import { Reveal } from '@/components/Reveal'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { menu, menuIsSample } from '@/data/site'
 
@@ -12,7 +13,7 @@ export function Menu() {
   return (
     <section id="carte" className="py-24">
       <div className="mx-auto max-w-295 px-4 sm:px-8">
-        <div className="mx-auto mb-10 max-w-160 text-center">
+        <Reveal className="mx-auto mb-10 max-w-160 text-center">
           <Eyebrow>La carte</Eyebrow>
           <h2 className="mt-3.5 text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.15] font-semibold">
             Les saveurs de la Martinique
@@ -28,7 +29,7 @@ export function Menu() {
               Carte d'exemple : plats et prix à titre indicatif
             </p>
           )}
-        </div>
+        </Reveal>
 
         <Tabs defaultValue={menu[0].id} className="gap-8">
           <TabsList variant="line" className="mx-auto h-auto w-full max-w-120 gap-1 pb-3">

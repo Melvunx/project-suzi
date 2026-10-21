@@ -29,6 +29,7 @@ Pas de framework de test configuré.
 - `src/App.tsx` assemble les sections de la maquette (`Header`, `Hero`, `Marquee`, `Features`, `Menu`, `Testimonials`, `CtaBand`, `Footer`) définies dans `src/components/`. Pas de routeur : page unique avec ancres (`#atouts`, `#carte`, `#avis`, `#reserver`, `#contact`).
 - `src/data/site.ts` centralise tout le contenu texte (coordonnées, horaires, atouts, avis, liens de nav). Modifier le contenu là, pas dans le JSX. Les valeurs `PLACEHOLDER` y sont signalées en commentaire.
 - Le thème Chez Susy est appliqué dans `src/index.css` : `primary` = orange, `secondary` = vert (variantes `primary-dark` / `secondary-dark`), `muted` = crème foncé, polices via `@fontsource-variable` (`font-heading` = Playfair Display). Pas de mode sombre. Le bandeau défilant utilise l'animation CSS `animate-marquee` (pas encore `motion`).
+- Animations (`motion/react`) : réglages partagés (courbe, durées, cascade) dans `src/lib/motion.ts`. `Reveal` / `RevealList` / `RevealItem` (`src/components/Reveal.tsx`) font apparaître un bloc au scroll, une seule fois. `App.tsx` enveloppe tout dans `<MotionConfig reducedMotion="user">` : avec `prefers-reduced-motion`, les translations sont désactivées automatiquement.
 - Les icônes viennent de `lucide-react` v1, qui n'a plus d'icônes de marques : Instagram / Facebook sont des SVG inline dans `Footer.tsx`.
 
 ## Maquette de référence
