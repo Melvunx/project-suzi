@@ -23,9 +23,12 @@ Pas de framework de test configuré.
 ## Architecture
 
 - Alias `@` → `src/`, déclaré à deux endroits à garder synchronisés : `vite.config.ts` (`resolve.alias`) et `paths` dans `tsconfig.json` / `tsconfig.app.json`. Pas de `baseUrl` (déprécié en TypeScript 6).
-- `src/index.css` : point d'entrée Tailwind + variables de thème shadcn (`:root` / `.dark`) et `@theme inline`. C'est ici que doivent vivre les tokens de la charte Chez Susy (voir ci-dessous). Le thème shadcn généré est encore celui par défaut (neutre, police Geist).
+- `src/index.css` : point d'entrée Tailwind + variables de thème shadcn (`:root`) et `@theme inline`.
 - Composants shadcn dans `src/components/ui/`, helper `cn()` dans `src/lib/utils.ts`.
-- `src/App.tsx` est pour l'instant un simple écran de test ; les sections de la maquette n'ont pas encore été portées.
+- `src/App.tsx` assemble les sections de la maquette (`Header`, `Hero`, `Marquee`, `Features`, `Testimonials`, `CtaBand`, `Footer`) définies dans `src/components/`. Pas de routeur : page unique avec ancres (`#atouts`, `#avis`, `#reserver`, `#contact`).
+- `src/data/site.ts` centralise tout le contenu texte (coordonnées, horaires, atouts, avis, liens de nav). Modifier le contenu là, pas dans le JSX. Les valeurs `PLACEHOLDER` y sont signalées en commentaire.
+- Le thème Chez Susy est appliqué dans `src/index.css` : `primary` = orange, `secondary` = vert (variantes `primary-dark` / `secondary-dark`), `muted` = crème foncé, polices via `@fontsource-variable` (`font-heading` = Playfair Display). Pas de mode sombre. Le bandeau défilant utilise l'animation CSS `animate-marquee` (pas encore `motion`).
+- Les icônes viennent de `lucide-react` v1, qui n'a plus d'icônes de marques : Instagram / Facebook sont des SVG inline dans `Footer.tsx`.
 
 ## Maquette de référence
 

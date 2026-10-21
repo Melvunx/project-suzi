@@ -28,6 +28,7 @@
     --color-background: var(--background);
     --color-primary-dark: var(--primary-dark);
     --color-secondary-dark: var(--secondary-dark);
+    --animate-marquee: marquee 30s linear infinite;
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -35,6 +36,10 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@keyframes marquee {
+    to { transform: translateX(-50%); }
 }
 
 /* Charte Chez Susy (reprise de la maquette chez-susy-.html) :

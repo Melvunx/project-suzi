@@ -1,13 +1,23 @@
-import { Button } from '@/components/ui/button'
+import { CtaBand } from '@/components/CtaBand'
+import { Features } from '@/components/Features'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { Hero } from '@/components/Hero'
+import { Marquee } from '@/components/Marquee'
+import { Testimonials } from '@/components/Testimonials'
 
 export default function App() {
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <h1 className="text-5xl font-semibold">
-        La cuisine créole, <em className="text-primary">sublimée</em>
-      </h1>
-      <p className="text-muted-foreground">Trinité · Martinique</p>
-      <Button>Réserver une table</Button>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Marquee />
+        <Features />
+        <Testimonials />
+        <CtaBand />
+      </main>
+      <Footer />
+    </>
   )
 }
