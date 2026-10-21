@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chez Susy — Restaurant Cuisine Créole, Trinité</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EE;
+    --cream-2:#F4EDE0;
+    --ink:#2B2620;
+    --ink-soft:#5C554A;
+    --orange:#D9781F;
+    --orange-dark:#B8631A;
+    --green:#8FB93E;
+    --green-dark:#5B7A28;
+    --line:#E4DACB;
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:'Playfair Display', serif;font-weight:600;line-height:1.15;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-size:12.5px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--green-dark);font-weight:600;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 34px;
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:15px;
+    letter-spacing:0.5px;
+    border-radius:var(--radius);
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{
+    background:var(--orange);color:#fff;
+    box-shadow:0 8px 22px -8px rgba(217,120,31,0.55);
+  }
+  .btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);}
+  .btn-ghost{
+    border-color:var(--ink);color:var(--ink);background:transparent;
+  }
+  .btn-ghost:hover{border-color:var(--green-dark);color:var(--green-dark);}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,238,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand svg{height:46px;width:auto;}
+  .nav-links{display:flex;gap:36px;font-size:14.5px;font-weight:500;}
+  .nav-links a{opacity:0.8;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;color:var(--orange-dark);}
+  .nav-cta{display:flex;align-items:center;}
+  @media (max-width:860px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{
+    padding:96px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.85fr;gap:64px;align-items:center;
+  }
+  @media (max-width:960px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{
+    font-size:clamp(38px,5.2vw,62px);
+    margin:18px 0 22px;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--orange);
+  }
+  .hero p.lead{
+    font-size:18px;color:var(--ink-soft);max-width:480px;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .trust-line{
+    margin-top:34px;display:flex;align-items:center;gap:12px;
+    font-size:13.5px;color:var(--ink-soft);
+  }
+  .stars{display:flex;gap:2px;color:var(--orange);}
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:6px;
+    background:var(--cream-2);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-visual .ring{
+    position:absolute;inset:18px;border:1px solid var(--line);border-radius:6px;
+  }
+
+  /* Marquee strip */
+  .strip{
+    background:var(--ink);color:var(--cream);
+    padding:14px 0;overflow:hidden;
+  }
+  .strip-track{
+    display:flex;gap:60px;white-space:nowrap;
+    animation:scroll 26s linear infinite;
+    font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    font-weight:500;
+  }
+  .strip-track span{color:var(--green);margin-right:60px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .strip-track{animation:none;} }
+
+  /* Section shared */
+  section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);margin-top:14px;}
+  .section-head p{color:var(--ink-soft);font-size:16.5px;margin-top:14px;}
+
+  /* Features */
+  .features{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media (max-width:860px){ .feature-grid{grid-template-columns:1fr;} }
+  .feature-card{
+    background:var(--cream-2);padding:44px 38px;
+  }
+  .feature-icon{
+    width:52px;height:52px;border-radius:50%;
+    border:1px solid var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:26px;color:var(--orange);
+  }
+  .feature-card h3{font-size:21px;margin-bottom:12px;color:var(--ink);}
+  .feature-card p{color:var(--ink-soft);font-size:15px;}
+
+  /* Testimonials */
+  .testimonials .section-head{margin-left:auto;margin-right:auto;text-align:center;}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media (max-width:900px){ .t-grid{grid-template-columns:1fr;} }
+  .t-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:34px 30px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .t-stars{display:flex;gap:3px;color:var(--orange);}
+  .t-quote{font-size:15.5px;color:var(--ink);font-style:italic;font-family:'Playfair Display',serif;line-height:1.55;}
+  .t-person{display:flex;align-items:center;gap:12px;margin-top:auto;}
+  .t-avatar{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--green);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:15px;
+  }
+  .t-name{font-size:14px;font-weight:600;}
+  .t-role{font-size:12.5px;color:var(--ink-soft);}
+
+  /* CTA band */
+  .cta-band{
+    background:var(--green-dark);
+    color:#fff;
+    text-align:center;
+    padding:80px 0;
+  }
+  .cta-band h2{color:#fff;font-size:clamp(26px,3.4vw,36px);margin-bottom:16px;}
+  .cta-band p{color:rgba(255,255,255,0.82);max-width:520px;margin:0 auto 34px;font-size:16px;}
+  .cta-band .btn-primary{background:var(--orange);box-shadow:0 10px 26px -10px rgba(0,0,0,0.4);}
+  .cta-band .btn-primary:hover{background:var(--orange-dark);}
+
+  /* Footer */
+  footer{background:var(--ink);color:var(--cream);padding:70px 0 28px;}
+  .footer-grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:44px;
+    padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+  .footer-brand svg{height:42px;width:auto;margin-bottom:16px;}
+  .footer-brand p{color:rgba(251,246,238,0.6);font-size:14px;max-width:260px;}
+  .footer-col h4{
+    font-size:12.5px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--green);margin-bottom:18px;font-weight:600;
+  }
+  .footer-col a, .footer-col p{
+    display:block;color:rgba(251,246,238,0.75);font-size:14.5px;margin-bottom:10px;
+  }
+  .footer-col a:hover{color:var(--orange);}
+  .footer-social{display:flex;gap:14px;margin-top:6px;}
+  .footer-social a{
+    width:36px;height:36px;border:1px solid rgba(251,246,238,0.25);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    color:var(--cream);
+  }
+  .footer-social a:hover{border-color:var(--orange);color:var(--orange);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:26px;font-size:12.5px;color:rgba(251,246,238,0.5);
+    flex-wrap:wrap;gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="340" cy="108" r="52" fill="none" stroke="#D9781F" stroke-width="2"/>
+        <text x="340" y="132" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-size="60" fill="#D9781F">S</text>
+        <line x1="318" y1="170" x2="362" y2="170" stroke="#8FB93E" stroke-width="2"/>
+        <circle cx="340" cy="170" r="3" fill="#8FB93E"/>
+        <text x="340" y="228" text-anchor="middle" font-family="Georgia, serif" font-size="42" letter-spacing="6" fill="#D9781F">CHEZ SUSY</text>
+        <line x1="250" y1="252" x2="430" y2="252" stroke="#8FB93E" stroke-width="1.2"/>
+        <text x="340" y="274" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="4" fill="#8FB93E">RESTAURANT CUISINE CRÉOLE</text>
+      </svg>
+    </div>
+    <nav class="nav-links">
+      <a href="#atouts">L'expérience</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Nous trouver</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#reserver" class="btn btn-primary" style="padding:12px 26px;font-size:14px;">Réserver une table</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Trinité · Martinique</span>
+      <h1>La cuisine créole,<br><em>sublimée</em> avec exigence.</h1>
+      <p class="lead">Chez Susy réinvite les saveurs du terroir martiniquais dans un cadre raffiné — produits locaux sélectionnés, recettes transmises, service attentionné, pour une table qui se réserve à l'avance.</p>
+      <div class="hero-actions">
+        <a href="#reserver" class="btn btn-primary">Réserver ma table</a>
+        <a href="#atouts" class="btn btn-ghost">Découvrir la carte</a>
+      </div>
+      <div class="trust-line">
+        <span class="stars">★★★★★</span>
+        <span>4,9/5 — plus de 200 convives satisfaits à Trinité</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ring"></div>
+      <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
+        <circle cx="110" cy="110" r="86" stroke="#D9781F" stroke-width="1.2"/>
+        <circle cx="110" cy="110" r="60" stroke="#8FB93E" stroke-width="1"/>
+        <path d="M70 130 Q110 70 150 130" stroke="#D9781F" stroke-width="1.4" fill="none"/>
+        <path d="M78 120 Q110 90 142 120" stroke="#8FB93E" stroke-width="1.2" fill="none"/>
+        <circle cx="110" cy="110" r="3.5" fill="#D9781F"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <div style="display:flex;">
+      <span>Produits locaux <span>·</span></span>
+      <span>Recettes créoles authentiques <span>·</span></span>
+      <span>Cadre raffiné <span>·</span></span>
+      <span>Trinité, Martinique <span>·</span></span>
+      <span>Produits locaux <span>·</span></span>
+      <span>Recettes créoles authentiques <span>·</span></span>
+      <span>Cadre raffiné <span>·</span></span>
+      <span>Trinité, Martinique <span>·</span></span>
+    </div>
+  </div>
+</div>
+
+<section id="atouts" class="features">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Pourquoi Chez Susy</span>
+      <h2>Une table créole pensée dans les moindres détails</h2>
+      <p>Chaque assiette raconte la Martinique — sans jamais sacrifier la finesse ni le raffinement du service.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 3c4 0 6 4 6 9s-2 9-6 9" stroke-linecap="round"/><path d="M20 3c-4 0-6 4-6 9s2 9 6 9" stroke-linecap="round"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Produits du terroir</h3>
+        <p>Poissons, épices et légumes-pays sélectionnés chaque semaine auprès de producteurs de Martinique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v10" stroke-linecap="round"/><path d="M7 8c0 5 2 8 5 8s5-3 5-8" stroke-linecap="round"/><circle cx="12" cy="19" r="2"/></svg>
+        </div>
+        <h3>Recettes de famille</h3>
+        <p>Des plats transmis de génération en génération, revisités avec précision par notre cheffe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="7" width="16" height="13" rx="1"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Service attentionné</h3>
+        <p>Un accueil chaleureux et un service soigné, pour une expérience qui se savoure autant qu'elle se mange.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis" class="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Ce qu'on en dit</span>
+      <h2>La confiance de nos convives</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">Une des meilleures tables créoles de l'île. Le colombo et le service étaient irréprochables du début à la fin.</p>
+        <div class="t-person">
+          <div class="t-avatar">M</div>
+          <div>
+            <div class="t-name">Marie-Ange R.</div>
+            <div class="t-role">Cliente régulière, Trinité</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">Cadre élégant, accueil chaleureux et des saveurs qui rappellent la cuisine de nos grands-mères, en plus raffiné.</p>
+        <div class="t-person">
+          <div class="t-avatar">J</div>
+          <div>
+            <div class="t-name">Jocelyn F.</div>
+            <div class="t-role">Le François</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">Réservé pour un anniversaire, tout était parfait. On sent l'exigence dans chaque assiette. On reviendra.</p>
+        <div class="t-person">
+          <div class="t-avatar">S</div>
+          <div>
+            <div class="t-name">Sandra L.</div>
+            <div class="t-role">Fort-de-France</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reserver" class="cta-band">
+  <div class="wrap">
+    <h2>Votre table vous attend</h2>
+    <p>Les places sont limitées chaque soir — réservez dès maintenant pour garantir votre moment Chez Susy.</p>
+    <a href="tel:+596596000000" class="btn btn-primary">Appeler pour réserver</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="340" cy="108" r="52" fill="none" stroke="#D9781F" stroke-width="2"/>
+          <text x="340" y="132" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-size="60" fill="#D9781F">S</text>
+          <line x1="318" y1="170" x2="362" y2="170" stroke="#8FB93E" stroke-width="2"/>
+          <circle cx="340" cy="170" r="3" fill="#8FB93E"/>
+          <text x="340" y="228" text-anchor="middle" font-family="Georgia, serif" font-size="42" letter-spacing="6" fill="#D9781F">CHEZ SUSY</text>
+          <line x1="250" y1="252" x2="430" y2="252" stroke="#8FB93E" stroke-width="1.2"/>
+          <text x="340" y="274" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="4" fill="#8FB93E">RESTAURANT CUISINE CRÉOLE</text>
+        </svg>
+        <p>Une cuisine créole exigeante, servie avec cœur au cœur de Trinité, Martinique.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Nous trouver</h4>
+        <p>Chez Susy</p>
+        <p>97220 Trinité, Martinique</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horaires</h4>
+        <p>Mar – Sam : 11h30 – 22h00</p>
+        <p>Dimanche : 11h30 – 15h00</p>
+        <p>Lundi : fermé</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+596596000000">0596 XX XX XX</a>
+        <a href="mailto:contact@chezsusy.mq">contact@chezsusy.mq</a>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v6h3v-6h3l1-3h-4V9c0-.5.5-1 1-1z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chez Susy — Tous droits réservés</span>
+      <span>Trinité, Martinique · 97220</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
